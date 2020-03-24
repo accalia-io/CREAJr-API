@@ -10,6 +10,16 @@ class Course extends Model {
         sequelize,
       }
     );
+
+    return this;
+  }
+
+  static associate(models) {
+    this.belongsToMany(models.Institution, {
+      through: models.InstitutionCourse,
+      as: 'institutions',
+      foreignKey: 'course_id',
+    });
   }
 }
 
